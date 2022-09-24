@@ -159,7 +159,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: json_artifact
-          path: modules/f5xc/api-credential/_out/response.json
+          path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/response.json
       - name: Cleanup environment
         id: cleanup_env
         run: |
@@ -189,6 +189,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: json_artifact
+          path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/response.json
       - name: List files in the repository
         run: |
           ls -la ${{ github.workspace }}
