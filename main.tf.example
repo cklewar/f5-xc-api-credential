@@ -7,7 +7,7 @@ variable "project_prefix" {
 variable "project_suffix" {
   type        = string
   description = "prefix string put at the end of string"
-  default     = "02"
+  default     = "01"
 }
 
 variable "f5xc_api_p12_file" {
@@ -57,8 +57,4 @@ output "response" {
     "name" = module.api_credential_api_certificate.api_credential["name"]
     "type" = module.api_credential_api_certificate.api_credential["type"]
   }
-}
-
-output "path_test" {
-  value = module.api_credential_api_certificate.path
 }

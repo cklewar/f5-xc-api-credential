@@ -200,10 +200,6 @@ jobs:
       - name: List files in the cert repository
         run: |
           ls -la ${{ github.workspace }}/f5-xc-cert
-      - name: List files in the modules repository
-        run: |
-          ls -la ${{ github.workspace }}/modules/f5xc/api-credential/_out
-          ls -la ${{ github.workspace }}/modules/f5xc/api-credential/_out/response.json
       - name: Setup environment
         id: setup_env
         run: |
