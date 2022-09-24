@@ -58,3 +58,7 @@ output "response" {
     "type" = module.api_credential_api_certificate.api_credential["type"]
   }
 }
+
+output "path_test" {
+  value = module.api_credential_api_certificate.path
+}
