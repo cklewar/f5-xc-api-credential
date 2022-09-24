@@ -155,6 +155,11 @@ jobs:
           TF_VAR_f5xc_api_credential_password: ${{ secrets.F5XC_API_CREDENTIAL_PASSWORD }}
         run: terraform apply -auto-approve -no-color
         continue-on-error: false
+      - name: Copy JSON state
+        uses: actions/upload-artifact@v2
+        with:
+          name: json_artifact
+          path: modules/f5xc/api-credential/_out/response.json
       - name: Cleanup environment
         id: cleanup_env
         run: |
@@ -180,6 +185,10 @@ jobs:
           path: f5-xc-cert
           token: ${{ secrets.GH_PAT }}
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Copy JSON state
+        uses: actions/download-artifact@v2
+        with:
+          name: json_artifact
       - name: List files in the repository
         run: |
           ls -la ${{ github.workspace }}
