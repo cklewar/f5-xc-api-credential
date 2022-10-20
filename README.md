@@ -34,11 +34,16 @@ module "api_credential_kubeconfig" {
   source                     = "./modules/f5xc/api-credential"
   f5xc_tenant                = var.f5xc_tenant
   f5xc_api_url               = var.f5xc_api_url
-  f5xc_namespace             = var.f5xc_namespace
   f5xc_api_token             = var.f5xc_api_token
+  f5xc_namespace             = var.f5xc_namespace
   f5xc_virtual_k8s_name      = module.vk8s.vk8s["name"]
   f5xc_api_credential_type   = "KUBE_CONFIG"
   f5xc_api_credentials_name  = format("%s-vk8s-credential-%s", var.project_prefix, var.project_suffix)
-  f5xc_virtual_k8s_namespace = var.f5xc_namespace
+  f5xc_virtual_k8s_namespace = var.f5xc_virtual_k8s_namespace
+}
+
+output "kube_config" {
+  value     = base64decode(module.credential.api_credential["data"])
+  sensitive = true
 }
 ```
