@@ -160,7 +160,7 @@ jobs:
         run: |
           ls -la ${{ github.workspace }}/modules/f5xc/api-credential/_out
       - name: Copy JSON state
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: json_artifact
           path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/response.json
