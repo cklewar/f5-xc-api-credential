@@ -1,4 +1,4 @@
-name: F5XC API credential module
+name: F5XC API Credential module
 on: workflow_dispatch
 jobs:
   f5-xc-api-credential-module-validate:
