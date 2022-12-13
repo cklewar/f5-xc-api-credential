@@ -121,7 +121,9 @@ cmake-build-*/
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
-
+.idea
+.terraform
+.terraform.lock.hcl
 # File-based project format
 *.iws
 
