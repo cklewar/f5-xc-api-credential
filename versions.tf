@@ -3,6 +3,7 @@ terraform {
 
   cloud {
     organization = "cklewar"
+    hostname     = "app.terraform.io"
     workspaces {
       name = "f5-xc-api-credential-module"
     }
