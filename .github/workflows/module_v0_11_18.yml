@@ -200,6 +200,9 @@ jobs:
           token:  ${{ secrets.GH_PAT }}
       - run: echo "The  ${{ github.release }} release has been cloned to the runner."
       - name: Copy JSON state
+        run: |
+          echo "api_credential_name=$(terraform output -json | jq -r '.response_api_certificate.value.name')" >> $GITHUB_ENV
+          ls -la ${{ github.workspace }}/modules/f5xc/api-credential/_out/${{ env.api_credential_name }}
         uses: actions/download-artifact@v3
         with:
           name: json_artifact
