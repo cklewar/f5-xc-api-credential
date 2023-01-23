@@ -213,7 +213,7 @@ jobs:
         id: init
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
-        run:  terraform init -upgrade
+        run: terraform init -upgrade
       - name: Get API Credential Name
         id: get_api_credential_name
         env:
@@ -225,7 +225,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: json_artifact
-          path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/${{ env.api_credential_name }}
+          path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/${{ env.api_credential_name }}/state.json
       - name: List files in the repository
         run: |
           ls -la ${{ github.workspace }}
