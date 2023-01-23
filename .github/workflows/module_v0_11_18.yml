@@ -199,6 +199,21 @@ jobs:
           path: f5-xc-cert
           token:  ${{ secrets.GH_PAT }}
       - run: echo "The  ${{ github.release }} release has been cloned to the runner."
+      - name: Setup environment
+        id: setup_env
+        run: |
+          cp main.tf.example main.tf
+      - name: Setup Terraform
+        id: setup_tf
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+        continue-on-error: true
+      - name: Terraform Init
+        id: init
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+        run:  terraform init -upgrade
       - name: Get API Credential Name
         id: get_api_credential_name
         env:
@@ -218,21 +233,6 @@ jobs:
       - name: List files in the cert repository
         run: |
           ls -la ${{ github.workspace }}/f5-xc-cert
-      - name: Setup environment
-        id: setup_env
-        run: |
-          cp main.tf.example main.tf
-      - name: Setup Terraform
-        id: setup_tf
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_wrapper: false
-        continue-on-error: true
-      - name: Terraform Init
-        id: init
-        env:
-          TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
-        run:  terraform init -upgrade
       - name: Terraform Destroy
         id: destroy
         env:
