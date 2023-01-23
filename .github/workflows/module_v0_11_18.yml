@@ -162,6 +162,20 @@ jobs:
           TF_VAR_f5xc_api_credential_password: ${{ secrets.F5XC_API_CREDENTIAL_PASSWORD }}
         run: terraform apply -auto-approve -no-color
         continue-on-error: false
+      - name: List files in the modules repository
+        id: list_state_file
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+        run: |
+          echo "api_credential_name=$(terraform output -json | jq -r '.response_api_certificate.value.name')" >> $GITHUB_ENV
+          ls -la ${{ github.workspace }}/modules/f5xc/api-credential/_out/${{ env.api_credential_name }}
+      - name: Copy JSON state
+        id: copy_state
+        uses: actions/upload-artifact@v3
+        with:
+          name: json_artifact
+          path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/${{ env.api_credential_name }}/state.json
+          retention-days: 1
       - name: Cleanup environment
         id: cleanup_env
         run: |
@@ -185,10 +199,15 @@ jobs:
           path: f5-xc-cert
           token:  ${{ secrets.GH_PAT }}
       - run: echo "The  ${{ github.release }} release has been cloned to the runner."
-      - name: List files in the release
+      - name: Copy JSON state
+        uses: actions/download-artifact@v3
+        with:
+          name: json_artifact
+          path: ${{ github.workspace }}/modules/f5xc/api-credential/_out/${{ env.api_credential_name }}/state.json
+      - name: List files in the repository
         run: |
           ls -la ${{ github.workspace }}
-      - name: List files in the cert release
+      - name: List files in the cert repository
         run: |
           ls -la ${{ github.workspace }}/f5-xc-cert
       - name: Setup environment
