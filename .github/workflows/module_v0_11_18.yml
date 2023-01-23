@@ -49,7 +49,7 @@ jobs:
         run: terraform validate -no-color
   api-credential-module-plan:
     runs-on: ubuntu-latest
-    needs: [API Credential-module-validate]
+    needs: [ api-credential-module-validate]
     steps:
       - run: echo "The job was automatically triggered by a ${{github.event_name}} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -109,7 +109,7 @@ jobs:
       - run: echo "This job's status is ${{ job.status }}."
   api-credential-module-apply:
     runs-on: ubuntu-latest
-    needs: [API Credential-module-plan]
+    needs: [ api-credential-module-plan]
     steps:
       - run: echo "The job was automatically triggered by a ${{github.event_name}} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -169,7 +169,7 @@ jobs:
       - run: echo "This job's status is ${{ job.status }}."
   api-credential-module-destroy:
     runs-on: ubuntu-latest
-    needs: [API Credential-module-apply]
+    needs: [ api-credential-module-apply]
     steps:
       - run: echo "The job was automatically triggered by a ${{github.event_name}} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
