@@ -200,7 +200,7 @@ jobs:
           token:  ${{ secrets.GH_PAT }}
       - run: echo "The  ${{ github.release }} release has been cloned to the runner."
       - name: Get API Credential Name
-        id: get api_credential_name
+        id: get_api_credential_name
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
         run: |
