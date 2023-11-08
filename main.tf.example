@@ -49,7 +49,7 @@ module "api_credential_api_certificate" {
   f5xc_api_credential_type        = "API_CERTIFICATE"
   f5xc_api_credentials_name       = format("%s-api-credential-%s", var.project_prefix, var.project_suffix)
   f5xc_api_credential_password    = var.f5xc_api_credential_password
-  f5xc_api_credential_module_root = ""
+  f5xc_api_credential_module_root = "/home/runner/work/f5-xc-api-credential/f5-xc-api-credential"
 }
 
 output "response_api_certificate" {
