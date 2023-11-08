@@ -92,7 +92,7 @@ jobs:
           VES_P12_PASSWORD: ${{ secrets.VES_P12_PASSWORD }}
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
           TF_VAR_gh_pat: ${{ secrets.GH_PAT }}
-          TF_VAR_tf_token_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+          TF_VAR_tf_token_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
           TF_VAR_ves_p12_password: ${{ secrets.VES_P12_PASSWORD }}
           TF_VAR_f5xc_api_url: ${{ secrets.F5XC_API_URL }}
           TF_VAR_f5xc_api_p12_file_nfv: ${{ secrets.F5XC_API_P12_FILE_NFV }}
@@ -152,7 +152,7 @@ jobs:
           VES_P12_PASSWORD: ${{ secrets.VES_P12_PASSWORD }}
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
           TF_VAR_gh_pat: ${{ secrets.GH_PAT }}
-          TF_VAR_tf_token_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+          TF_VAR_tf_token_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
           TF_VAR_ves_p12_password: ${{ secrets.VES_P12_PASSWORD }}
           TF_VAR_f5xc_api_url: ${{ secrets.F5XC_API_URL }}
           TF_VAR_f5xc_api_p12_file_nfv: ${{ secrets.F5XC_API_P12_FILE_NFV }}
@@ -183,7 +183,7 @@ jobs:
       - run: echo "This job's status is ${{ job.status }}."
   api-credential-module-reapply:
     runs-on: ubuntu-latest
-    needs: [ {{ data.job }}-module-apply ]
+    needs: [api-credential-module-apply]
     steps:
       - run: echo "The job was automatically triggered by a ${{github.event_name}} event."
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub."
@@ -224,7 +224,7 @@ jobs:
         id: reapply
         env:
             GH_PAT: ${{ secrets.GH_PAT }}
-            TF_TOKEN_APP_TERRAFORM_IO: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+            TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
             VES_P12_PASSWORD: ${{ secrets.VES_P12_PASSWORD }}
             TF_VAR_f5xc_api_url: ${{ secrets.F5XC_API_URL }}
             TF_VAR_f5xc_api_p12_file_nfv: ${{ secrets.F5XC_API_P12_FILE_NFV }}
@@ -297,7 +297,7 @@ jobs:
           VES_P12_PASSWORD: ${{ secrets.VES_P12_PASSWORD }}
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
           TF_VAR_gh_pat: ${{ secrets.GH_PAT }}
-          TF_VAR_tf_token_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+          TF_VAR_tf_token_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
           TF_VAR_ves_p12_password: ${{ secrets.VES_P12_PASSWORD }}
           TF_VAR_f5xc_api_url: ${{ secrets.F5XC_API_URL }}
           TF_VAR_f5xc_api_p12_file_nfv: ${{ secrets.F5XC_API_P12_FILE_NFV }}
